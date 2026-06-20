@@ -1,3 +1,17 @@
-def call (){
-  sh "docker-compose down && docker-compose up -d"
+def call() {
+    echo "Deploying using Docker Compose..."
+
+    sh '''
+        set -e
+
+        docker compose version
+
+        echo "Stopping containers..."
+        docker compose down || true
+
+        echo "Starting containers..."
+        docker compose up -d --build
+
+        docker ps
+    '''
 }
