@@ -1,16 +1,16 @@
 def call() {
-    echo "Deploying using Docker Compose (legacy)..."
+    echo "Deploying using Docker Compose v2..."
 
     sh '''
         set -e
 
-        docker-compose version
+        docker compose version
 
         echo "Stopping containers..."
-        docker-compose down || true
+        docker compose down || true
 
         echo "Starting containers..."
-        docker-compose up -d --build
+        docker compose up -d --build
 
         docker ps
     '''
